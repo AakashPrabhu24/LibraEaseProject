@@ -1,12 +1,15 @@
 .home-page-container {
     width: 80%;
+    max-width: 1280px;
     height: 100%;
-    padding: 16px;
+    padding: 24px;
     display: flex;
-    border-radius: 20px;
+    gap: 24px;
+    border-radius: var(--radius);
     justify-content: space-between;
     align-items: flex-start;
     background-color: var(--background-primary);
+    border: 1px solid var(--border);
     box-shadow: var(--box-shadow);
 }
 
@@ -25,4 +28,17 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+}
+
+@media (max-width: 900px){
+    .home-page-container{
+        width: 94%;
+        flex-direction: column;
+        padding: 16px;
+    }
+
+    .home-page-left,
+    .home-page-right{
+        width: 100%;
+    }
 }

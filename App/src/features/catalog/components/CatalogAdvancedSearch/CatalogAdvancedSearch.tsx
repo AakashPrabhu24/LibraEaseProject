@@ -16,40 +16,33 @@ export const CatalogAdvancedSearch:React.FC = () => {
     const genreRef = useRef<HTMLInputElement>(null);
 
     const search = () => {
-        let query = "?";
-        
-        if(isbnRef && isbnRef.current && isbnRef.current.value !== ""){
-            query += `?barcode=${isbnRef.current.value}`;
-        }
+        const params = new URLSearchParams();
 
-        if(titleRef && titleRef.current && titleRef.current.value !== ""){
-            query += query === "" ? `?title=${titleRef.current.value}` : `&title=${titleRef.current.value}`;
-        }
+        const fields: [string, React.RefObject<HTMLInputElement | null>][] = [
+            ["barcode", isbnRef],
+            ["title", titleRef],
+            ["author", authorRef],
+            ["description", descriptionRef],
+            ["subject", subjectRef],
+            ["genre", genreRef],
+        ];
 
-        if(authorRef && authorRef.current && authorRef.current.value !== ""){
-            query += query === "" ? `?author=${authorRef.current.value}` : `&author=${authorRef.current.value}`;
-        }
+        fields.forEach(([name, ref]) => {
+            const value = ref.current?.value.trim();
+            if(value){
+                params.append(name, value);
+            }
+        });
 
-        if(descriptionRef && descriptionRef.current && descriptionRef.current.value !== ""){
-            query += query === "" ? `?description=${descriptionRef.current.value}` : `&description=${descriptionRef.current.value}`;
-        }
-
-        if(subjectRef && subjectRef.current && subjectRef.current.value !== ""){
-            query += query === "" ? `?subject=${subjectRef.current.value}` : `&subject=${subjectRef.current.value}`;
-        }
-
-        if(genreRef && genreRef.current && genreRef.current.value !== ""){
-            query += query === "" ? `?genre=${genreRef.current.value}` : `&genre=${genreRef.current.value}`;
-        }
-
-        navigate(`/catalog${query}`);
+        const query = params.toString();
+        navigate(query ? `/catalog?${query}` : "/catalog");
     }
 
     return (
         <div className="catalog-advanced-search">
             <h2>Advanced Book Search</h2>
             <p>Fill in as many fields to narrow your search results</p>
-            <form className="catalog-advanced-search-form">
+            <form className="catalog-advanced-search-form" onSubmit={(e) => { e.preventDefault(); search(); }}>
                 <div className="catalog-advanced-form-input-group">
                     <p>ISBN</p>
                     <input id="isbn" className="catalog-advanced-form-input" placeholder={"ISBN"} ref={isbnRef}/>

@@ -28,7 +28,7 @@ export const CatalogOverview:React.FC = () => {
                 bookState.books.length > 0 && !bookState.loading ?
                 <div className="catalog-overview">
                     <h2>
-                        welcome to our library, we currently have {bookState.books && bookState.books.length} books.
+                        Welcome to our library, we currently have {bookState.books && bookState.books.length} books.
                     </h2>
                     <h4>
                         Browse our selected books below, or search for something using the top navigation bar.

@@ -3,3 +3,8 @@
     height: fit-content;
     text-align: center;
 }
+
+.catalog-overview h1,
+.catalog-overview h2{
+    margin-bottom: 16px;
+}
