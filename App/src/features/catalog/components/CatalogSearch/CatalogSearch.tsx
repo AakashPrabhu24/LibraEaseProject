@@ -28,15 +28,23 @@ export const CatalogSearch:React.FC = () => {
             </div>
             {
                 !bookState.loading ?
-                <>
-                <h2>Displaying {bookState.pagingInformation?.pageCount} books out of {bookState.pagingInformation?.totalCount}</h2>
-                <div className="catalog-search-item-area">
-                    {bookState.books.map((book) => <BookCard key={book.barcode} book={book} />)}
-                </div>
-                <div className="catalog-search-pages">
-                    < CatalogSearchPageNavigator />
-                </div>
-                </>
+                (
+                    bookState.books.length === 0 ?
+                    <div className="catalog-search-empty">
+                        <h2>No books found</h2>
+                        <p>We couldn't find anything matching your search. Try different keywords or fewer fields.</p>
+                    </div>
+                    :
+                    <>
+                    <h2>Displaying {bookState.pagingInformation?.pageCount} books out of {bookState.pagingInformation?.totalCount}</h2>
+                    <div className="catalog-search-item-area">
+                        {bookState.books.map((book) => <BookCard key={book.barcode} book={book} />)}
+                    </div>
+                    <div className="catalog-search-pages">
+                        < CatalogSearchPageNavigator />
+                    </div>
+                    </>
+                )
                 :
                 <></>
             }

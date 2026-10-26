@@ -1,7 +1,49 @@
 .profile-record {
     width: 100%;
     height: fit-content;
-    border-bottom: 1px solid black;
-    padding-top: 6px;
-    padding-bottom: 6px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    background-color: var(--background-page);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--secondary);
+    border-radius: 12px;
+}
+
+.profile-record-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 6px;
+}
+
+.profile-record-title {
+    font-size: 1.05rem;
+    color: var(--primary);
+}
+
+.profile-record p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.profile-record-badge {
+    flex-shrink: 0;
+    padding: 3px 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    border-radius: 999px;
+}
+
+.profile-record-badge.loaned {
+    color: #8a5a00;
+    background-color: #fdf1d6;
+    border: 1px solid #f0d596;
+}
+
+.profile-record-badge.returned {
+    color: #1e6b3a;
+    background-color: #e8f5ec;
+    border: 1px solid #bfe3ca;
 }

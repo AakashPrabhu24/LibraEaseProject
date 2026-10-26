@@ -1,30 +1,54 @@
 .library-hours {
-    padding: 16px;
+    padding: 20px;
     width: 100%;
     height: fit-content;
-    background-color: var(--background-secondary);
-    border-radius: 12px;
+    background-color: var(--background-primary);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--secondary);
+    border-radius: 14px;
     box-shadow: var(--box-shadow);
+}
+
+.library-hours h1,
+.library-hours h2,
+.library-hours h3,
+.library-hours h4{
+    margin-bottom: 12px;
 }
 
 .library-hours-table {
     border-collapse: collapse;
     width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
 }
 
 #hours tr{
-    border: 1px solid rgba(120,120,120,.2);
-    padding: 8px;
+    border-bottom: 1px solid var(--border);
+}
+
+#hours tr:last-child{
+    border-bottom: none;
 }
 
 #hours tr:nth-child(even){
-    background-color: lightpink;
+    background-color: var(--background-page);
 }
 
 #hours tr:nth-child(odd){
-    background-color: lightgoldenrodyellow;
+    background-color: var(--background-primary);
 }
 
 #hours td {
-    font-size : 1.25rem;
+    font-size : 0.95rem;
+    padding: 9px 8px;
+}
+
+#hours td:first-child{
+    font-weight: 600;
+    color: var(--primary);
+}
+
+#hours td:last-child{
+    color: var(--text-secondary);
 }

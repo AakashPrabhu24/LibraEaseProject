@@ -10,13 +10,13 @@ export const UpcomingEvents:React.FC = () => {
             <div className="upcoming-events-header-group">
                 <AutoAwesome sx={{
                     fontSize: "2.25rem",
-                    color: "#3626A7"
+                    color: "var(--secondary)"
                 }}
                 />
                 <h2>Upcoming Events</h2>
                 <AutoAwesome sx={{
                     fontSize: "2.25rem",
-                    color: "#3626A7"
+                    color: "var(--secondary)"
                 }}
                 />
             </div>

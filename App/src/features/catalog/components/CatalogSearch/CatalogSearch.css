@@ -9,23 +9,36 @@
 }
 
 .catalog-search-advanced-search-section{
-    width: 98.75%;
+    width: 100%;
     height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 16px;
+    margin-bottom: 28px;
+}
+
+/* "Displaying X books out of Y" */
+.catalog-search > h2{
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--primary);
+    padding: 8px 22px;
+    margin-bottom: 24px;
+    background-color: var(--background-secondary);
+    border: 1px solid var(--border);
+    border-radius: 999px;
 }
 
 .catalog-search-item-area{
     width: 100%;
     height: fit-content;
     display: flex;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    row-gap: 30px;
-    margin-left: 10%;
+    gap: 28px;
+    margin-left: 0;
 }
 
 .catalog-search-pages {
@@ -34,5 +47,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 12px;
 }
 
+/* No results */
+.catalog-search-empty{
+    width: 100%;
+    max-width: 520px;
+    padding: 36px 24px;
+    margin: 8px auto 24px auto;
+    text-align: center;
+    background-color: var(--background-secondary);
+    border: 1px dashed var(--border);
+    border-radius: 16px;
+}
+
+.catalog-search-empty h2{
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.catalog-search-empty p{
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}

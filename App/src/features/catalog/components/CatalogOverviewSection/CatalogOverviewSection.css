@@ -10,9 +10,23 @@
     align-items: flex-end;
     padding-left: 12px;
     padding-right: 12px;
+    margin-bottom: 8px;
+}
+
+.catalog-overview-section-top h2,
+.catalog-overview-section-top h3{
+    font-size: 1.4rem;
+}
+
+.catalog-overview-section-more{
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--secondary-hover);
+    transition: color 0.2s ease;
 }
 
 .catalog-overview-section-more:hover{
     text-decoration: underline;
     cursor: pointer;
+    color: var(--primary);
 }

@@ -10,40 +10,61 @@
 .update-user-input-group{
     width: 100%;
     height: fit-content;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     position: relative;
 }
 
+.update-user-input-group h4{
+    margin-bottom: 4px;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--secondary-hover);
+}
+
 .update-user-input {
-    height : 2rem;
+    height : 2.6rem;
     width: 100%;
-    font-size: 1.5rem;
+    font-size: 1.05rem;
     font-weight: 400;
-    background-color: var(--background-secondary);
-    border: none;
+    padding: 0 14px;
+    color: var(--text);
+    background-color: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: border-color 0.25s, box-shadow 0.25s;
 }
 
 .update-user-input:disabled {
-    color: var(--text-primary);
-    background-color: var(--background-secondary);
+    color: var(--text);
+    background-color: var(--background-page);
+    border-color: transparent;
 }
 
 .update-user-input:focus {
     outline: none;
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 4px rgba(217, 154, 43, 0.2);
 }
 
 .profile-button {
     width: 80%;
-    height: 2.5rem;
-    font-size: 1.25rem;
-    border-radius: 12px;
+    height: 2.7rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 10px;
     border: none;
-    background-color: cyan;
+    color: #ffffff;
+    background-color: var(--primary);
     margin-top: 16px;
+    transition: background-color 0.25s, box-shadow 0.25s, transform 0.15s;
 }
 
 .profile-button:hover {
     cursor: pointer;
-    background-color: var(--background-secondary);
-    border: 2px solid var(--primary);
+    background-color: var(--primary-hover);
+    box-shadow: 0 8px 18px rgba(31, 42, 86, 0.3);
+    transform: translateY(-1px);
 }

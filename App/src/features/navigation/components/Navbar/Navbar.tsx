@@ -41,7 +41,7 @@ export const Navbar:React.FC = () => {
         <nav className="navbar">
             <Link to="/" className="navbar-logo-section">
                 <Book sx={{
-                    fontSize: "3rem"
+                    fontSize: "2.4rem"
                 }} />
                 <h1>LibraEase</h1>
             </Link>
@@ -54,17 +54,17 @@ export const Navbar:React.FC = () => {
                     <Search onClick={handleSearchIconClicked} 
                         sx={{
                             cursor: "pointer",
-                            fontSize: "1.5 rem"
+                            fontSize: "1.5rem"
                         }}
                     />
                 </div>
                 {
                     authState.loggedInUser ? 
-                    <div className="navbar-option" onClick={navigateToProfile}>
+                    <div className="navbar-option navbar-login" onClick={navigateToProfile}>
                         <h2>{authState.loggedInUser.firstname}</h2>
                     </div>
                     :
-                    <div className="navbar-option" onClick={toggleLogin}>
+                    <div className="navbar-option navbar-login" onClick={toggleLogin}>
                         <h2>Login</h2>
                     </div>
                 }
