@@ -20,7 +20,12 @@ export const ProfileLoanHistory: React.FC = () => {
                     value: user._id
                 });
 
-                let r = res.data.records;
+                // Backend sends `id` and `itemDetails`; the page expects `_id` and `item`
+                let r = (res.data.records || []).map((rec: any) => ({
+                    ...rec,
+                    _id: rec._id ?? rec.id,
+                    item: rec.itemDetails ?? rec.item
+                }));
 
                 setRecords(r);
             } catch (e) {
@@ -35,12 +40,16 @@ export const ProfileLoanHistory: React.FC = () => {
 
     return (
         <div className="profile-loan-history">
-            <h3 className="profile-loan-header">{user?.firstname}'s Item Loan History:</h3>
-            {records.map((record) => {
-                return (
-                <ProfileLoanRecord key={record._id} record={record} />
-                );
-            })}
+            <h3 className="profile-loan-header">{user?.firstname}'s Item Loan History</h3>
+            {records.length === 0 ? (
+                <p className="profile-loan-empty">No books borrowed yet.</p>
+            ) : (
+                records.map((record) => {
+                    return (
+                    <ProfileLoanRecord key={record._id} record={record} />
+                    );
+                })
+            )}
         </div>
     )
 

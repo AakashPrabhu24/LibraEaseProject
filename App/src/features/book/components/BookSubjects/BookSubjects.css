@@ -1,67 +1,41 @@
-.additional-book-info {
+.book-subjects {
     width: 100%;
-    min-height: 220px;
     height: fit-content;
+    max-height: 280px;
+    background-color: var(--background-primary);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--primary);
+    border-radius: 14px;
     margin-top: 20px;
     padding: 20px;
-    border-radius: 14px;
-    border: 1px solid var(--border);
-    border-top: 4px solid var(--secondary);
-    background-color: var(--background-primary);
     box-shadow: var(--box-shadow);
 }
 
-.additional-book-info > h1,
-.additional-book-info > h2,
-.additional-book-info > h3{
+.book-subjects > h1,
+.book-subjects > h2,
+.book-subjects > h3{
     margin-bottom: 12px;
 }
 
-.additional-book-info-container {
+.book-info-subjects-box {
+    min-height: 60px;
+    max-height: 150px;
     width: 100%;
-    height: 80%;
+    overflow-y: auto;
+    margin-bottom: 8px;
     display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    gap: 12px;
+    flex-wrap: wrap;
+    align-content: flex-start;
 }
 
-.additional-book-info-group {
-    height: 100%;
-    width: 25%;
-    padding: 16px 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--background-page);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-}
-
-.additional-book-info-group h3,
-.additional-book-info-group h4{
-    font-family: var(--font-body);
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--secondary-hover);
-    margin-bottom: 6px;
-}
-
-.additional-book-info-text {
-    text-align: center;
+.book-info-subject {
+    margin-right: 8px;
+    margin-bottom: 8px;
+    padding: 4px 14px;
+    font-size: 0.85rem;
     font-weight: 500;
-    color: var(--text);
-}
-
-@media (max-width: 900px){
-    .additional-book-info-container{
-        flex-wrap: wrap;
-    }
-
-    .additional-book-info-group{
-        width: 47%;
-    }
+    color: var(--primary);
+    background-color: var(--background-secondary);
+    border: 1px solid var(--border);
+    border-radius: 999px;
 }

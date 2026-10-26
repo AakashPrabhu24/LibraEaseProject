@@ -22,12 +22,19 @@ const initialState: AuthenticationSliceState = {
     registerSuccess: false,
 };
 
+// The backend (Supabase) sends the user's id as `id`, but the frontend
+// uses `_id` everywhere. Copy it over once, as soon as the data arrives.
+const normalizeUser = (user: any) => {
+    if (!user) return user;
+    return { ...user, _id: user._id ?? user.id };
+};
+
 export const loginUser = createAsyncThunk(
     'auth/login',
     async (user:LoginUserPayload,thunkAPI) => {
         try {
             const req = await axios.post('http://localhost:8000/auth/login',user);
-            return req.data.user;
+            return normalizeUser(req.data.user);
         } catch (e) {
             return thunkAPI.rejectWithValue(e);
         }
@@ -39,7 +46,7 @@ export const registerUser = createAsyncThunk(
     async (user:RegisterUserPayload,thunkAPI) => {
         try {
             const req = await axios.post('http://localhost:8000/auth/register',user);
-            return req.data.user;
+            return normalizeUser(req.data.user);
         } catch (e) {
             console.log(e);
             return thunkAPI.rejectWithValue(e);
@@ -52,7 +59,7 @@ export const fetchUser = createAsyncThunk(
     async(payload:FetchUserPayload,thunkAPI) => {
         try {
             const req = await axios.get(`http://localhost:8000/users/${payload.userId}`);
-            const user  = req.data.user;
+            const user  = normalizeUser(req.data.user);
             
             return {user,property:payload.property};
     
@@ -67,7 +74,7 @@ export const updateUser = createAsyncThunk(
     async(payload:User,thunkAPI) => {
         try {
             const req = await axios.put('http://localhost:8000/users/',payload);
-            return req.data.user;
+            return normalizeUser(req.data.updatedUser ?? req.data.user);
         } catch (e) {
             return thunkAPI.rejectWithValue(e);
         }
@@ -79,7 +86,8 @@ export const getLibraryCard = createAsyncThunk(
     async(userId:string,thunkAPI) => {
         try {
             const req = await axios.post(`http://localhost:8000/card/`,{user:userId});
-            return req.data.libraryCard;
+            // The backend sends the new card as `savedCard`
+            return req.data.savedCard ?? req.data.libraryCard;
         } catch (e:any) {
             return thunkAPI.rejectWithValue(e);
         }
@@ -184,7 +192,7 @@ export const AuthenticationSlice = createSlice({
             state = {
                 ...state,
                 loading: false,
-                libraryCard: action.payload._id
+                libraryCard: action.payload.id ?? action.payload._id
                 
             }
             return state;

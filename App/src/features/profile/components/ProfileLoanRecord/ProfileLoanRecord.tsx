@@ -8,10 +8,16 @@ interface ProfileLoanRecordProps {
 }
 
 export const ProfileLoanRecord: React.FC<ProfileLoanRecordProps> = ({ record }) => {
+    const returned = record.status === 'AVAILABLE';
+
     return (
         <div className="profile-record">
-            <h4>Title: {record.item.title}</h4>
-            <h4>Status: {record.status === 'AVAILABLE' ? 'RETURNED' : 'LOANED'}</h4>
+            <div className="profile-record-top">
+                <h4 className="profile-record-title">{record.item?.title ?? 'Unknown book'}</h4>
+                <span className={returned ? 'profile-record-badge returned' : 'profile-record-badge loaned'}>
+                    {returned ? 'RETURNED' : 'LOANED'}
+                </span>
+            </div>
             <p>Loan Date: {new Date(record.loanedDate).toDateString()}</p>
             <p>Return by Date: {new Date(record.dueDate).toDateString()}</p>
             {record.returnedDate && <p>Date Returned: {new Date(record.returnedDate).toDateString()}</p>}

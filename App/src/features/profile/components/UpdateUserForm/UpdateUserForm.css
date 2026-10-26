@@ -14,9 +14,9 @@
     position: relative;
 }
 
-.update-user-input-group label{
-    display: block;
+.update-user-input-group h4{
     margin-bottom: 4px;
+    font-family: var(--font-body);
     font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.06em;
