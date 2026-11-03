@@ -12,6 +12,8 @@ const allowedOrigins = [
     'http://localhost:5173',
     'http://localhost:5000',
     'http://localhost:3000',
+    'https://libra-ease-project-3hr5-one.vercel.app',
+    'https://libra-ease-project-3hr5-1wve4052s-aakash-401c.vercel.app',
     ...(process.env.CLIENT_URL ? process.env.CLIENT_URL.split(',').map((s) => s.trim()) : [])
 ];
 

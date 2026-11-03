@@ -36,6 +36,9 @@ export const loginUser = createAsyncThunk(
     'auth/login',
     async (user:LoginUserPayload,thunkAPI) => {
         try {
+            if (import.meta.env.PROD && !API_BASE_URL) {
+                return thunkAPI.rejectWithValue("Backend API URL is not configured. Please set VITE_API_URL in Vercel.");
+            }
             const req = await axios.post(`${API_BASE_URL}/auth/login`,user);
             return normalizeUser(req.data.user);
         } catch (e: any) {
@@ -49,6 +52,9 @@ export const registerUser = createAsyncThunk(
     'auth/register',
     async (user:RegisterUserPayload,thunkAPI) => {
         try {
+            if (import.meta.env.PROD && !API_BASE_URL) {
+                return thunkAPI.rejectWithValue("Backend API URL is not configured. Please set VITE_API_URL in Vercel.");
+            }
             const req = await axios.post(`${API_BASE_URL}/auth/register`,user);
             return normalizeUser(req.data.user);
         } catch (e: any) {
