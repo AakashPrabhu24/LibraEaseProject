@@ -18,11 +18,7 @@ export const  BookCard:React.FC<BookCardProps> = ({book}) => {
     const user = useSelector((state:RootState) => state.authentication.loggedInUser);
     const dispatch:AppDispatch = useDispatch();
 
-    const [available, setAvailable] = useState<boolean>(() => {
-        if (!book?.records || book.records.length === 0) return true;
-
-        return book.records[0].status === 'AVAILABLE';
-    });
+    const available = !book?.records || book.records.length === 0 || book.records[0].status === 'AVAILABLE';
     
     const [buttonClass, setButtonClass] = useState<string>('');
     

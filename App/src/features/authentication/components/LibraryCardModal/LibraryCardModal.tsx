@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AppDispatch, RootState } from '../../../../redux/ReduxStore';
+import { AppDispatch } from '../../../../redux/ReduxStore';
 import { useDispatch } from 'react-redux';
 import { setDisplayLibraryCard } from '../../../../redux/slices/ModalSlice';
 import { Modal } from '../../../../components';

@@ -1,9 +1,8 @@
-import React,{ useRef,useState } from "react";
+import React,{ useRef } from "react";
 import { useDispatch,useSelector } from "react-redux";
 import { AppDispatch,RootState } from "../../../../redux/ReduxStore";
 import { loginUser } from "../../../../redux/slices/AuthenticationSlice";
 import './LoginForm.css';
-import {User} from "../../../../models/User";
 
 interface LoginFormProps {
     toggleRegister():void;

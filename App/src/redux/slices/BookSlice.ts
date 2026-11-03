@@ -23,7 +23,7 @@ const initialState: BookSliceState = {
 
 export const fetchAllBooks = createAsyncThunk(
     'book/all',
-    async (payload,thunkAPI) => {
+    async (_,thunkAPI) => {
         try{
             let req = await axios.get(`${API_BASE_URL}/book/`);
             return req.data.books;
@@ -131,7 +131,7 @@ export const BookSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchAllBooks.pending, (state,action) => {
+        builder.addCase(fetchAllBooks.pending, (state) => {
             state = {
                 ...state,
                 books: [],
@@ -139,7 +139,7 @@ export const BookSlice = createSlice({
             }
             return state;
         })
-        builder.addCase(queryBooks.pending, (state,action) => {
+        builder.addCase(queryBooks.pending, (state) => {
             state = {
                 ...state,
                 books: [],
@@ -147,21 +147,21 @@ export const BookSlice = createSlice({
             }
             return state;
         })
-        builder.addCase(checkoutBook.pending, (state,action) => {
+        builder.addCase(checkoutBook.pending, (state) => {
             state = {
                 ...state,
                 loading: true
             }
             return state;
         })
-        builder.addCase(checkinBook.pending, (state,action) => {
+        builder.addCase(checkinBook.pending, (state) => {
             state = {
                 ...state,
                 loading: true
             }
             return state;
         })
-        builder.addCase(loadBookByBarcode.pending, (state,action) => {
+        builder.addCase(loadBookByBarcode.pending, (state) => {
             state = {
                 ...state,
                 loading: true
@@ -238,7 +238,7 @@ export const BookSlice = createSlice({
         });
         
         
-        builder.addCase(loadBookByBarcode.rejected, (state, action) => {
+        builder.addCase(loadBookByBarcode.rejected, (state) => {
             state = {
                 ...state,
                 loading: false,

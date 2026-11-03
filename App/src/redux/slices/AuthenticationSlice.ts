@@ -116,7 +116,7 @@ export const AuthenticationSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(loginUser.pending, (state,action) => {
+        builder.addCase(loginUser.pending, (state) => {
             state = {
                 ...state,
                 error: false,
@@ -124,7 +124,7 @@ export const AuthenticationSlice = createSlice({
             }
             return state;
         });
-        builder.addCase(registerUser.pending, (state,action) => {
+        builder.addCase(registerUser.pending, (state) => {
             state = {
                 ...state,
                 error: false,
@@ -132,7 +132,7 @@ export const AuthenticationSlice = createSlice({
             }
             return state;
         });
-        builder.addCase(fetchUser.pending, (state,action) => {
+        builder.addCase(fetchUser.pending, (state) => {
             state = {
                 ...state,
                 error: false,
@@ -140,7 +140,7 @@ export const AuthenticationSlice = createSlice({
             }
             return state;
         });
-        builder.addCase(updateUser.pending, (state,action) => {
+        builder.addCase(updateUser.pending, (state) => {
             state = {
                 ...state,
                 error: false,
@@ -148,7 +148,7 @@ export const AuthenticationSlice = createSlice({
             }
             return state;
         });
-        builder.addCase(getLibraryCard.pending, (state,action) => {
+        builder.addCase(getLibraryCard.pending, (state) => {
             state = {
                 ...state,
                 error: false,
@@ -164,7 +164,7 @@ export const AuthenticationSlice = createSlice({
             }
             return state;
         });
-        builder.addCase(registerUser.fulfilled, (state,action) => {
+        builder.addCase(registerUser.fulfilled, (state) => {
             state = {
                 ...state,
                 loading: false,
@@ -198,7 +198,7 @@ export const AuthenticationSlice = createSlice({
             }
             return state;
         });
-        builder.addCase(loginUser.rejected, (state,action) => {
+        builder.addCase(loginUser.rejected, (state) => {
             state = {
                 ...state,
                 error: true,
@@ -206,7 +206,7 @@ export const AuthenticationSlice = createSlice({
             }
             return state;
         });
-        builder.addCase(registerUser.rejected, (state,action) => {
+        builder.addCase(registerUser.rejected, (state) => {
             state = {
                 ...state,
                 error: true,
@@ -214,7 +214,7 @@ export const AuthenticationSlice = createSlice({
             }
             return state;
         });
-        builder.addCase(fetchUser.rejected, (state,action) => {
+        builder.addCase(fetchUser.rejected, (state) => {
             state = {
                 ...state,
                 error: true,
@@ -222,7 +222,7 @@ export const AuthenticationSlice = createSlice({
             }
             return state;
         });
-        builder.addCase(updateUser.rejected, (state,action) => {
+        builder.addCase(updateUser.rejected, (state) => {
             state = {
                 ...state,
                 error: true,
