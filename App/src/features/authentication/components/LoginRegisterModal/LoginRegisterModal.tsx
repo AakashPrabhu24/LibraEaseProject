@@ -4,6 +4,7 @@ import './LoginRegisterModal.css';
 import { AppDispatch, RootState } from "../../../../redux/ReduxStore";
 import { useEffect,useState } from "react";
 import { setDisplayLogin } from "../../../../redux/slices/ModalSlice";
+import { resetError } from "../../../../redux/slices/AuthenticationSlice";
 import { LoginForm } from "../LoginForm/LoginForm";
 import { RegisterForm } from "../RegisterForm/RegisterForm";
 
@@ -14,10 +15,12 @@ export const LoginRegisterModal:React.FC = () => {
     const [login,setLogin] = useState<boolean>(true);
 
     const closeModal = () => {
+        dispatch(resetError());
         dispatch(setDisplayLogin(false));
     }
 
     const toggleLogin = () => {
+        dispatch(resetError());
         setLogin(!login);
     }
 

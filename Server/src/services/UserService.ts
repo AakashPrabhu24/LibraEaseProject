@@ -10,9 +10,9 @@ export async function register(user:IUser):Promise<IUserModel>{
 
     try {
         const hashedPassword = await bycrypt.hash(user.password, ROUNDS);
-        // New accounts always start PENDING, regardless of what the client sends,
-        // and only become usable once an admin approves them.
-        const created = await UserDao.insert({...user, password: hashedPassword, status: 'PENDING'});
+        // Patrons are approved automatically upon registration
+        const status = user.status || (user.type === 'PATRON' ? 'APPROVED' : 'PENDING');
+        const created = await UserDao.insert({...user, password: hashedPassword, status});
         return created;
     } catch (error:any) {
         // Postgres unique-violation error code, replacing Mongo's E11000
@@ -32,7 +32,14 @@ export async function login(credentials:{email:string,password:string}):Promise<
         const isMatch = await bycrypt.compare(password,user.password);
         if(!isMatch) throw new UnableToFetchUserError("Invalid password");
 
-        if(user.status === 'PENDING') throw new AccountPendingApprovalError("Your account is awaiting admin approval");
+        if(user.status === 'PENDING') {
+            if (user.type === 'PATRON') {
+                await UserDao.updateById(user.id, { status: 'APPROVED' });
+                user.status = 'APPROVED';
+            } else {
+                throw new AccountPendingApprovalError("Your account is awaiting admin approval");
+            }
+        }
         if(user.status === 'REJECTED') throw new AccountPendingApprovalError("Your account request was not approved");
 
         return user;

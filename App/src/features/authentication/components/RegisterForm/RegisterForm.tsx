@@ -48,7 +48,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({toggleLogin}) => {
     return(
         <form className="register-form">
             <h2>Enter your information</h2>
-            {authState.error ? <p className="register-form-error">there was an error</p> : <></>}
+            {authState.error ? <p className="register-form-error">{authState.errorMessage || "There was an error"}</p> : <></>}
             <div className="register-form-name-group">
                 <div className="register-form-name-input-group">
                     <h6>First Name</h6>

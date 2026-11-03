@@ -11,6 +11,7 @@ interface AuthenticationSliceState {
     libraryCard: string;
     loading: boolean;
     error: boolean;
+    errorMessage: string;
     registerSuccess: boolean;
 }
 
@@ -20,6 +21,7 @@ const initialState: AuthenticationSliceState = {
     libraryCard: "",
     loading: false,
     error: false,
+    errorMessage: "",
     registerSuccess: false,
 };
 
@@ -36,8 +38,9 @@ export const loginUser = createAsyncThunk(
         try {
             const req = await axios.post(`${API_BASE_URL}/auth/login`,user);
             return normalizeUser(req.data.user);
-        } catch (e) {
-            return thunkAPI.rejectWithValue(e);
+        } catch (e: any) {
+            const msg = e.response?.data?.message || "Invalid email or password";
+            return thunkAPI.rejectWithValue(msg);
         }
     }
 );
@@ -48,9 +51,10 @@ export const registerUser = createAsyncThunk(
         try {
             const req = await axios.post(`${API_BASE_URL}/auth/register`,user);
             return normalizeUser(req.data.user);
-        } catch (e) {
+        } catch (e: any) {
             console.log(e);
-            return thunkAPI.rejectWithValue(e);
+            const msg = e.response?.data?.message || "Unable to register user";
+            return thunkAPI.rejectWithValue(msg);
         }
     }
 );
@@ -103,7 +107,17 @@ export const AuthenticationSlice = createSlice({
         resetRegisterSuccess: (state) => {
             state = {
                 ...state,
-                registerSuccess: false
+                registerSuccess: false,
+                error: false,
+                errorMessage: ""
+            }
+            return state;
+        },
+        resetError: (state) => {
+            state = {
+                ...state,
+                error: false,
+                errorMessage: ""
             }
             return state;
         },
@@ -198,18 +212,20 @@ export const AuthenticationSlice = createSlice({
             }
             return state;
         });
-        builder.addCase(loginUser.rejected, (state) => {
+        builder.addCase(loginUser.rejected, (state, action) => {
             state = {
                 ...state,
                 error: true,
+                errorMessage: (action.payload as string) || "Invalid email or password",
                 loading: false
             }
             return state;
         });
-        builder.addCase(registerUser.rejected, (state) => {
+        builder.addCase(registerUser.rejected, (state, action) => {
             state = {
                 ...state,
                 error: true,
+                errorMessage: (action.payload as string) || "Unable to register user",
                 loading: false
             }
             return state;
@@ -233,6 +249,6 @@ export const AuthenticationSlice = createSlice({
     }
 });
 
-export const {resetRegisterSuccess, resetUser} = AuthenticationSlice.actions;
+export const {resetRegisterSuccess, resetUser, resetError} = AuthenticationSlice.actions;
 
 export default AuthenticationSlice.reducer;
